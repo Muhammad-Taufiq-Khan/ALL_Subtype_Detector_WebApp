@@ -1,51 +1,73 @@
-<!doctype html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  
-  <!-- Make it compatible to mobile devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALL Subtype Classification</title>
- 
-  
-</head>
+{% extends "base.html" %}
+<html>
+{% block body %}
 
 
-<body style="background: #000;">
-
-<h2 style="color:Violet;">Acute Lymphoblastic Leukemia Subtype Classifier</h2><p>
-<h4 style="color:Violet;">Upload an image and click submit</h4>
-
-
-<form method="post" action="/" enctype="multipart/form-data">
-    <dl>
-	<p style="color:Violet;">
-		<input type="file" name="file" autocomplete="off" required> <!--File-->
-	</p>
-    </dl>
-    <p style="color:Violet;">
-	<input type="submit" name="submit" value="Submit"> <!--Submit-->
-    </p>
-</form>
+        <!-- Masthead-->
+        <header class="masthead bg-dark text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="{{ url_for('static', filename='assets/img/avataaars.svg')}}" alt="..." /> <!--RELINKED-->
+                <!-- Masthead Heading-->
+                <h6 class="masthead-heading text-uppercase mb-0">Hi! I am Taufiq, an AI/ML enthusiast</h6>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0"> This is one of my personal Image Processing projects. A blood cancer (Acute Lymphoblastic Leukemia) affected patient can detect the current stage of cancer within a few seconds by providing his/her microscopic blood smear image. Acute Lymphoblastic Leukemia has 4 stages. These are Bening, Early Pre-B, Pre-B, and Pro-B. All of the stages are detectable through this system. Thank you.</p>
+            </div>
+        </header>
 
 
 
-<p style="color:MediumSeaGreen;">
-	{% with messages = get_flashed_messages() %}
-	  {% if messages %}
-        Diagnosis for the following image is: <u><h3 style="color:MediumSeaGreen;">{{ messages[0] }}</h3></u><br>
-        <img src="{{ messages[1] }}" width="300", height="225">      <br>
-        <!-- Test: <h1>{{messages[3]}}</h1>  -->
-	  {% endif %}
-	{% endwith %}
 
-  <!-- New Render -->
-  <!-- {% if prediction %}
-  <img src="{{img_path}}" height="400px" width="400px">
-	<h2> Your Prediction   : <i> {{prediction}} </i></h2>
-	{% endif %} -->
-</p>
+    <!-- All content here -->
+    <body id="page-top">
 
+        <!-- Saple table -->
+        <!-- <div class="container-fluid px-1 py-5 mx-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                    <h2 class="text-center">Request a Tele-diagnosis</h2>
+                    <p class="blue-text text-center">Just answer a few questions so that we can diagnose your renal health </p>
+                    <h6>Here are some sample data. You can either use these to test the tele-diagnosis system or fill-up your own personal and clinical information to checkup your kidney.</h6>
+                </div>
+            </div>
+        </div> -->
 
+        <!-- FORM -->
+        <div class="container-fluid px-1 py-5 mx-auto">
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-left">
+                    <div class="card">
+                        <h5 class="text-center mb-4 form-title"> Upload the microscopic blood smear image here </h5>
+                        
+                        <!--FORM start-->
+                        <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
 
-</body>
+                            <div class="form-group">
+                            <label class="control-label col-sm-2" for="pwd"><p></p></label> 
+                            <div class="col-sm-10">          
+                                <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd"> <!--Image Upload Box-->
+                            </div>
+                            </div>
+
+                            <div class="form-group">        
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Detect Stage</button> <!--Image Submit-->
+                            </div>
+                            </div>
+                        </form> 
+                        <!--FORM END-->
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    {% endblock %}
+</html>
